@@ -114,8 +114,9 @@ div[data-testid="stVegaLiteChart"] {{
 /* ---- Dialog popup insight ---- */
 div[data-testid="stDialog"] * {{ color: {TEXT_MAIN} !important; }}
 div[data-testid="stDialog"] > div {{ background-color: {BG_CARD} !important; }}
+.insight-row {{ display: flex; gap: 0.7rem; padding: 0.6rem 0; border-bottom: 1px solid {BORDER}; }}
 .insight-row .insight-num {{
-    background-color: {ACCENT}; color: #FFFFFF !important; min-width: 26px; height: 26px;
+    background-color: {ACCENT}; color: #FFFFFF !important; min-width: 26px; width: 26px; height: 26px;
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
     font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
 }}
