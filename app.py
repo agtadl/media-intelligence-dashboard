@@ -65,9 +65,9 @@ html, body, [class*="css"] {{ font-family: 'Inter', 'Segoe UI', sans-serif !impo
     padding-top: 0.9rem;
     padding-bottom: 1.2rem;
 }}
-.qo-value {{ font-size: 1.7rem; font-weight: 800; color: {TEXT_MAIN} !important; line-height: 1.15; }}
+.qo-value {{ font-size: 1.7rem; font-weight: 800; color: {TEXT_MAIN} !important; line-height: 1.15; margin-left: 0.3rem; }}
 .qo-value small {{ font-size: 0.95rem; font-weight: 600; color: {TEXT_SOFT} !important; }}
-.qo-label {{ font-size: 0.85rem; color: {TEXT_SOFT} !important; margin-top: 0.2rem; }}
+.qo-label {{ font-size: 0.85rem; color: {TEXT_SOFT} !important; margin-top: 0.2rem; margin-left: 0.3rem; }}
 
 /* ---- Hero header, rasio 19:6 ---- */
 .hero {{
