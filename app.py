@@ -59,7 +59,7 @@ html, body, [class*="css"] {{ font-family: 'Inter', 'Segoe UI', sans-serif !impo
 /* ---- Quick Overview ---- */
 .qo-title {{ font-size: 1.1rem; font-weight: 700; color: {TEXT_MAIN} !important; margin-bottom: 0.1rem; }}
 .qo-sub {{ font-size: 0.85rem; color: {TEXT_SOFT} !important; margin-bottom: 1rem; }}
-.qo-item {{ border-top: 3px solid var(--qo-color); padding-top: 0.9rem; }}
+.qo-item {{ border-top: 3px solid var(--qo-color); padding-top: 0.9rem; padding-bottom: 1.2rem; }}
 .qo-value {{ font-size: 1.7rem; font-weight: 800; color: {TEXT_MAIN} !important; line-height: 1.15; }}
 .qo-value small {{ font-size: 0.95rem; font-weight: 600; color: {TEXT_SOFT} !important; }}
 .qo-label {{ font-size: 0.85rem; color: {TEXT_SOFT} !important; margin-top: 0.2rem; }}
