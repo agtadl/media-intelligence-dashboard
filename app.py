@@ -182,6 +182,22 @@ section[data-testid="stSidebar"] .stRadio [role="radiogroup"] label:has(input:ch
 div[data-testid="stExpander"] {{ background-color: {BG_CARD}; border: 1px solid {BORDER}; border-radius: 12px; }}
 
 video, iframe {{ border-radius: 14px; }}
+/* ---- Samakan tinggi container yang sejajar dalam 1 row ---- */
+div[data-testid="stHorizontalBlock"] {{
+    align-items: stretch !important;
+}}
+div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {{
+    display: flex !important;
+    flex-direction: column !important;
+}}
+div[data-testid="stHorizontalBlock"] > div[data-testid="column"] > div {{
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+}}
+div[data-testid="stVerticalBlockBorderWrapper"] {{
+    height: 100% !important;
+}}
 </style>
 """
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
