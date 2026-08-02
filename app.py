@@ -260,7 +260,7 @@ with st.sidebar:
         key="sidebar_api_key",
         help="Kosongkan untuk pakai key default (aman, tidak ditampilkan di browser).",
 )
-    # lalu di bagian pemanggilan generate_ai_insight, fallback ke secret kalau kosong:
+    # fallback ke secret kalau kosong, key asli tidak pernah dikirim ke browser
 active_key = sidebar_api_key or OPENROUTER_API_KEY
 
 # =========================================================
@@ -404,12 +404,12 @@ if nav_choice == "📊 Dashboard":
 
     clicked = render_chart("Engagement Trend Over Time", "Total engagement bulanan per merek", "btn_trend", fig_trend)
     if clicked:
-        if not sidebar_api_key:
+        if not active_key:
             st.warning("Masukkan Anthropic API Key di sidebar untuk generate insight.")
         else:
             with st.spinner("Menghasilkan insight..."):
                 try:
-                    pts = generate_ai_insight(sidebar_api_key, "Engagement Trend Over Time", trend.to_string(index=False))
+                    pts = generate_ai_insight(active_key, "Engagement Trend Over Time", trend.to_string(index=False))
                     show_insight("Engagement Trend Over Time", pts)
                 except Exception as e:
                     st.error(f"Gagal generate insight: {e}")
@@ -449,12 +449,12 @@ if nav_choice == "📊 Dashboard":
 
         clicked_sent = render_chart("Sentiment Breakdown", "Distribusi sentimen per merek", "btn_sent", fig_sent)
         if clicked_sent:
-            if not sidebar_api_key:
+            if not active_key:
                 st.warning("Masukkan Anthropic API Key di sidebar untuk generate insight.")
             else:
                 with st.spinner("Menghasilkan insight..."):
                     try:
-                        pts = generate_ai_insight(sidebar_api_key, "Sentiment Breakdown", sent_counts.to_string(index=False))
+                        pts = generate_ai_insight(active_key, "Sentiment Breakdown", sent_counts.to_string(index=False))
                         show_insight("Sentiment Breakdown", pts)
                     except Exception as e:
                         st.error(f"Gagal generate insight: {e}")
@@ -467,12 +467,12 @@ if nav_choice == "📊 Dashboard":
 
         clicked_plat = render_chart("Platform Engagements", "Total engagement per platform & merek", "btn_plat", fig_plat)
         if clicked_plat:
-            if not sidebar_api_key:
+            if not active_key:
                 st.warning("Masukkan Anthropic API Key di sidebar untuk generate insight.")
             else:
                 with st.spinner("Menghasilkan insight..."):
                     try:
-                        pts = generate_ai_insight(sidebar_api_key, "Platform Engagements", plat.to_string(index=False))
+                        pts = generate_ai_insight(active_key, "Platform Engagements", plat.to_string(index=False))
                         show_insight("Platform Engagements", pts)
                     except Exception as e:
                         st.error(f"Gagal generate insight: {e}")
@@ -516,12 +516,12 @@ if nav_choice == "📊 Dashboard":
 
         clicked_media = render_chart("Media Type Mix", "Komposisi jenis konten per merek", "btn_media", fig_media)
         if clicked_media:
-            if not sidebar_api_key:
+            if not active_key:
                 st.warning("Masukkan Anthropic API Key di sidebar untuk generate insight.")
             else:
                 with st.spinner("Menghasilkan insight..."):
                     try:
-                        pts = generate_ai_insight(sidebar_api_key, "Media Type Mix", media_counts.to_string(index=False))
+                        pts = generate_ai_insight(active_key, "Media Type Mix", media_counts.to_string(index=False))
                         show_insight("Media Type Mix", pts)
                     except Exception as e:
                         st.error(f"Gagal generate insight: {e}")
@@ -537,12 +537,12 @@ if nav_choice == "📊 Dashboard":
 
         clicked_loc = render_chart("Top 5 Locations", "Wilayah dengan kontribusi engagement tertinggi per merek", "btn_loc", fig_loc)
         if clicked_loc:
-            if not sidebar_api_key:
+            if not active_key:
                 st.warning("Masukkan Anthropic API Key di sidebar untuk generate insight.")
             else:
                 with st.spinner("Menghasilkan insight..."):
                     try:
-                        pts = generate_ai_insight(sidebar_api_key, "Top 5 Locations", loc.to_string(index=False))
+                        pts = generate_ai_insight(active_key, "Top 5 Locations", loc.to_string(index=False))
                         show_insight("Top 5 Locations", pts)
                     except Exception as e:
                         st.error(f"Gagal generate insight: {e}")
@@ -721,8 +721,8 @@ with st.container(border=True):
     generate_clicked = st.button("✨ Generate AI Insight", type="primary")
 
     if generate_clicked:
-        if not OPENROUTER_API_KEY:
-            st.warning("Isi dulu OPENROUTER_API_KEY di bagian atas kode dengan API key OpenRouter kamu.")
+        if not active_key:
+            st.warning("Masukkan Anthropic API Key di sidebar untuk generate insight.")
         else:
             with st.spinner("Menghasilkan kesimpulan bisnis..."):
                 try:
@@ -736,7 +736,7 @@ with st.container(border=True):
                     )
                     resp = requests.post(
                         url="https://openrouter.ai/api/v1/chat/completions",
-                        headers={"Authorization": f"Bearer {OPENROUTER_API_KEY}", "Content-Type": "application/json"},
+                        headers={"Authorization": f"Bearer {active_key}", "Content-Type": "application/json"},
                         json={
                             "model": OPENROUTER_MODEL,
                             "messages": [{"role": "user", "content": prompt}],
@@ -753,6 +753,6 @@ with st.container(border=True):
         st.markdown(f'<div class="reco-item">{st.session_state["ai_business_conclusion"]}</div>', unsafe_allow_html=True)
     else:
         st.markdown(
-            '<div class="qo-sub">Klik tombol di atas untuk menghasilkan kesimpulan bisnis otomatis dari Claude.</div>',
+            '<div class="qo-sub">Klik tombol di atas untuk menghasilkan kesimpulan bisnis otomatis.</div>',
             unsafe_allow_html=True,
         )
