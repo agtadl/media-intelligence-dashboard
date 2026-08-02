@@ -527,7 +527,7 @@ if nav_choice == "📊 Dashboard":
         fig_loc = px.bar(loc, x="Engagements", y="Location", color="Brand", orientation="h",
                           color_discrete_map=BRAND_COLOR_MAP, barmode="group",
                           category_orders={"Location": list(loc_order)})
-        style_fig(fig_loc, height=300, xaxis_title="Engagements")
+        style_fig(fig_loc, height=330, xaxis_title="Engagements")
 
         clicked_loc = render_chart("Top 5 Locations", "Wilayah dengan kontribusi engagement tertinggi per merek", "btn_loc", fig_loc)
         if clicked_loc:
