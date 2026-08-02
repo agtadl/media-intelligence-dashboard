@@ -254,12 +254,14 @@ with st.sidebar:
     sidebar_api_key = st.text_input(
         "OpenRouter API Key untuk insight AI",
         type="password",
-        value=OPENROUTER_API_KEY,
+        value="",
         placeholder="sk-or-...",
         label_visibility="collapsed",
         key="sidebar_api_key",
-        help="Sudah terisi otomatis dari kode. Bisa diganti manual kalau perlu pakai key lain.",
-    )
+        help="Kosongkan untuk pakai key default (aman, tidak ditampilkan di browser).",
+)
+    # lalu di bagian pemanggilan generate_ai_insight, fallback ke secret kalau kosong:
+active_key = sidebar_api_key or OPENROUTER_API_KEY
 
 # =========================================================
 # HERO HEADER
