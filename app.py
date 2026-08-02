@@ -434,16 +434,15 @@ if nav_choice == "📊 Dashboard":
                 row=1, col=i,
             )
         style_fig(fig_sent, height=300)
-        fig_sent.update_layout(margin=dict(t=40, l=10, r=10, b=10))
         fig_sent.update_annotations(font=dict(color=TEXT_MAIN, size=12.5, family=PLOT_FONT))
         fig_sent.update_layout(
             legend=dict(
                 orientation="h",
-                yanchor="top", y=-0.05,
+                yanchor="top", y=0.02,
                 xanchor="center", x=0.5,
                 font=dict(color=TEXT_MAIN, size=12),
             ),
-            margin=dict(t=40, l=10, r=10, b=50),
+            margin=dict(t=25, l=10, r=10, b=25),
         )
 
         clicked_sent = render_chart("Sentiment Breakdown", "Distribusi sentimen per merek", "btn_sent", fig_sent)
@@ -506,11 +505,11 @@ if nav_choice == "📊 Dashboard":
         fig_media.update_layout(
             legend=dict(
                 orientation="h",
-                yanchor="top", y=-0.05,
+                yanchor="top", y=0.02,
                 xanchor="center", x=0.5,
                 font=dict(color=TEXT_MAIN, size=12),
             ),
-            margin=dict(t=40, l=10, r=10, b=50),
+            margin=dict(t=25, l=10, r=10, b=25),
         )
 
         clicked_media = render_chart("Media Type Mix", "Komposisi jenis konten per merek", "btn_media", fig_media)
